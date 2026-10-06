@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<sdf version="1.11">
+  <model name="rts">
+    <link name="base_link">
+
+      <!-- Инерция: авто из collision-геометрии + density внутри inertial, а не collision -->
+      <inertial>
+        <auto>true</auto>
+      </inertial>
+
+      <collision name="collision">
+        <geometry>
+          <mesh optimization="convex_decomposition">
+            <!-- Можно оставить STL для collision (геометрии хватит), а для visual уже OBJ -->
+            <uri>file:///home/zimkovas/models/rts/mesh.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction><ode><mu>0.8</mu><mu2>0.8</mu2></ode></friction>
+        </surface>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <!-- ВАЖНО: OBJ, а не STL! Иначе UV не подхватятся -->
+            <uri>file:///home/zimkovas/models/rts/mesh.obj</uri>
+          </mesh>
+        </geometry>
+        
+        <material>
+          <ambient>1.0 1.0 1.0 1</ambient>
+          <diffuse>1.0 1.0 1.0 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+
+          <!-- PBR metal/roughness — современный путь, работает в Harmonic -->
+          <pbr>
+            <metal>
+              <albedo_map>file:///home/zimkovas/models/rts/texture.png</albedo_map>
+              <roughness>0.8</roughness>
+              <metalness>0.0</metalness>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+    </link>
+  </model>
+</sdf>

@@ -1,0 +1,11 @@
+
+build
+install
+log
+
+.vscode
+COLCON_IGNORE
+AMENT_IGNORE
+
+src/rts_description/models/rts/mesh.obj
+src/robotnik_gazebo_worlds
